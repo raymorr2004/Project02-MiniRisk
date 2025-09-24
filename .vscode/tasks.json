@@ -1,0 +1,40 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      // Our explicit build (used by Run Mini-RISK)
+      "label": "Build Risk (all sources)",
+      "type": "shell",
+      "command": "/usr/bin/g++",
+      "args": [
+        "-std=c++17",
+        "-g",
+        "-Wall","-Wextra","-pedantic",
+        "main.cpp",
+        "src/Board.cpp","src/MapSpec.cpp","src/Rules.cpp",
+        "src/Game.cpp","src/IO.cpp","src/RandomAI.cpp","src/Utils.cpp",
+        "-Isrc",
+        "-o","main"
+      ],
+      "problemMatcher": ["$gcc"],
+      "group": { "kind": "build", "isDefault": true }
+    },
+    {
+      // Override the C/C++ extension's "build active file" to build everything too
+      "label": "C/C++: g++ build active file",
+      "type": "shell",
+      "command": "/usr/bin/g++",
+      "args": [
+        "-std=c++17",
+        "-g",
+        "-Wall","-Wextra","-pedantic",
+        "main.cpp",
+        "src/Board.cpp","src/MapSpec.cpp","src/Rules.cpp",
+        "src/Game.cpp","src/IO.cpp","src/RandomAI.cpp","src/Utils.cpp",
+        "-Isrc",
+        "-o","main"
+      ],
+      "problemMatcher": ["$gcc"]
+    }
+  ]
+}
