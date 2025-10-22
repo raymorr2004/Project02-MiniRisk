@@ -11,8 +11,8 @@
         "-Wall",
         "-Wextra",
         "-pedantic",
-        "project02/main.cpp",
-        "project02/game.cpp",
+        "Project02-MiniRisk/main.cpp",
+        "Project02-MiniRisk/game.cpp",
         "-o",
         "main"
       ],
