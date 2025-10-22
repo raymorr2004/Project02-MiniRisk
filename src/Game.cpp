@@ -324,25 +324,46 @@ bool Game::aiChooseReinforcement(TerrId& where, int /*reinforcements*/, unsigned
 double Game::estimateCaptureProb(TerrId from, TerrId to, int trials, unsigned seed) const {
     int atk = board_[from].armies;
     int def = board_[to].armies;
-    if (atk<2) return 0.0;
-    if (def<=0) return 1.0;
-    int wins=0;
-    for (int t=0;t<trials;++t) {
-        int a=atk, d=def;
-        unsigned s = seed + (unsigned)(t*7919 + from*97 + to*131);
-        while (a>1 && d>0) {
-            int aDice = attackerDice(a);
-            int dDice = defenderDice(d);
-            if (aDice<=0 || dDice<=0) break;
-            auto loss = simulateBattleOnce(aDice,dDice,s++);
-            a -= loss.first;
-            d -= loss.second;
-            if (a<0) a=0; if (d<0) d=0;
+    if (atk < 2) return 0.0;
+    if (def <= 0) return 1.0;
+
+    int wins = 0;
+for (int t = 0; t < trials; ++t) {
+    int a = atk;
+    int d = def;
+
+    unsigned s = seed + static_cast<unsigned>(t * 7919 + from * 97 + to * 131);
+
+    while (a > 1 && d > 0) {
+    int aDice = attackerDice(a);
+    int dDice = defenderDice(d);
+
+    if (aDice <= 0 || dDice <= 0) {
+        break;
+    } else {
+        auto loss = simulateBattleOnce(aDice, dDice, s++);
+        a -= loss.first;
+        d -= loss.second;
+
+        if (a < 0) {
+            a = 0;
         }
-        if (d<=0 && a>0) ++wins;
+        if (d < 0) {
+            d = 0;
+        }
     }
-    return (double)wins / (double)trials;
 }
+
+
+    if (d <= 0 && a > 0) {
+        ++wins;
+    }
+}
+
+
+    return static_cast<double>(wins) / static_cast<double>(trials);
+}
+
 
 Game::AIPlanAtt Game::aiChooseAttack(unsigned seed) const {
     AIPlanAtt plan;
