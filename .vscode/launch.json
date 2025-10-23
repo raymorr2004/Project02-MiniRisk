@@ -2,18 +2,15 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "Run Mini-RISK Game",
+      "name": "Run Mini-RISK",
       "type": "cppdbg",
       "request": "launch",
       "program": "${workspaceFolder}/main",
-      "args": [],
-      "stopAtEntry": false,
       "cwd": "${workspaceFolder}",
-      "environment": [],
-      "externalConsole": true,
+      "args": [],
+      "preLaunchTask": "Build Risk (all sources)",
       "MIMode": "gdb",
-      "miDebuggerPath": "/usr/bin/gdb",
-      "preLaunchTask": "Build Mini-RISK (all sources)"
+      "miDebuggerPath": "/usr/bin/gdb"
     }
   ]
 }

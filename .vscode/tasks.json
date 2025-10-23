@@ -2,35 +2,39 @@
   "version": "2.0.0",
   "tasks": [
     {
-      "label": "Build Mini-RISK (all sources)",
+      // Our explicit build (used by Run Mini-RISK)
+      "label": "Build Risk (all sources)",
       "type": "shell",
-      "command": "g++",
+      "command": "/usr/bin/g++",
       "args": [
         "-std=c++17",
         "-g",
-        "-Wall",
-        "-Wextra",
-        "-pedantic",
+        "-Wall","-Wextra","-pedantic",
         "main.cpp",
-        "Game.cpp",
-        "src/Board.cpp",
-        "src/MapSpec.cpp",
-        "src/Rules.cpp",
-        "src/IO.cpp",
-        "src/RandomAI.cpp",
-        "src/Utils.cpp",
+        "src/Board.cpp","src/MapSpec.cpp","src/Rules.cpp",
+        "Game.cpp","src/IO.cpp","src/RandomAI.cpp","src/Utils.cpp",
         "-Isrc",
-        "-o",
-        "${workspaceFolder}/main"
+        "-o","main"
       ],
-      "options": {
-        "cwd": "${workspaceFolder}"
-      },
       "problemMatcher": ["$gcc"],
-      "group": {
-        "kind": "build",
-        "isDefault": true
-      }
+      "group": { "kind": "build", "isDefault": true }
+    },
+    {
+      // Override the C/C++ extension's "build active file" to build everything too
+      "label": "C/C++: g++ build active file",
+      "type": "shell",
+      "command": "/usr/bin/g++",
+      "args": [
+        "-std=c++17",
+        "-g",
+        "-Wall","-Wextra","-pedantic",
+        "main.cpp",
+        "src/Board.cpp","src/MapSpec.cpp","src/Rules.cpp",
+        "Game.cpp","src/IO.cpp","src/RandomAI.cpp","src/Utils.cpp",
+        "-Isrc",
+        "-o","main"
+      ],
+      "problemMatcher": ["$gcc"]
     }
   ]
 }
