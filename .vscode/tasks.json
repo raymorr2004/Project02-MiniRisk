@@ -2,9 +2,9 @@
   "version": "2.0.0",
   "tasks": [
     {
-      "label": "build Mini-RISK",
+      "label": "Build Mini-RISK (all sources)",
       "type": "shell",
-      "command": "/usr/bin/g++",
+      "command": "g++",
       "args": [
         "-std=c++17",
         "-g",
@@ -12,15 +12,25 @@
         "-Wextra",
         "-pedantic",
         "main.cpp",
-        "src/Game.cpp",
+        "Game.cpp",
+        "src/Board.cpp",
+        "src/MapSpec.cpp",
+        "src/Rules.cpp",
+        "src/IO.cpp",
+        "src/RandomAI.cpp",
+        "src/Utils.cpp",
+        "-Isrc",
         "-o",
-        "main"
+        "${workspaceFolder}/main"
       ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": ["$gcc"],
       "group": {
         "kind": "build",
         "isDefault": true
-      },
-      "problemMatcher": ["$gcc"]
+      }
     }
   ]
 }
